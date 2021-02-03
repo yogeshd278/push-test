@@ -56,6 +56,7 @@ navigator.serviceWorker.register('sw.js')
         });
 
         messaging.onMessage(function (payload) {
+            console.log('payload ======> ', payload)
             const { notification: { title, data = {} } } = payload;
             appendHTML(title, data.type)
             console.log('Message received. ', payload);
