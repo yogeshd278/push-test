@@ -121,7 +121,17 @@ navigator.serviceWorker.register('sw.js')
         self.addEventListener('notificationclick', function(event) {
            if (event.action === 'like') {
                // Like button was clicked
-               console.log('like')
+               const url = 'http://localhost:9000/cleverfork/api/v1/user/countrieslist';
+                console.log('url', url)
+                if (!url) return;
+                fetch(url, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    method: 'GET'
+                })
+                .then((res) => { console.log('res :: '+res+' event :: '+event.notification.data) });
+             
                const photoId = event.notification.data.photoId;
                console.log('photoId :: ', photoId)
                like(photoId);
