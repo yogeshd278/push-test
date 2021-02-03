@@ -64,6 +64,7 @@ navigator.serviceWorker.register('sw.js')
         function sendTokenToServer({ token, clientId, browserId }) {
             console.log("resquest sent for token", token)            
             const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/set-token';
+            console.log('url', url)
             if (!token || !clientId || !url) return;
             fetch(url, {
                 headers: {
