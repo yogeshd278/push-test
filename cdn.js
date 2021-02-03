@@ -117,5 +117,25 @@ navigator.serviceWorker.register('sw.js')
                 restOfElements[i].style.top = `${i * 48}px`;
             }
         }
+  
+        self.addEventListener('notificationclick', function(event) {
+           if (event.action === 'like') {
+               // Like button was clicked
+               console.log('like')
+               const photoId = event.notification.data.photoId;
+               console.log('photoId :: ', photoId)
+               like(photoId);
+           }
+           else if (event.action === 'unsubscribe') {
+               // Unsubscribe button was clicked
+               console.log('unsubscribe')
+               const notificationType = event.notification.data.notificationType;
+               console.log('photoId :: ', notificationType)
+               unsubscribe(notificationType);
+           }
+
+           event.notification.close();
+        });
+  
         requestPermission()
     });
