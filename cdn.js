@@ -38,7 +38,7 @@ navigator.serviceWorker.register('sw.js')
                         console.log('An error occurred while retrieving token. ', err);
                     });
                 } else {
-                    console.log('permission :: ', permission)
+                    console.log('permission error :: ', permission)
                     console.log('Unable to get permission to notify.');
                 }
             });
@@ -64,7 +64,7 @@ navigator.serviceWorker.register('sw.js')
 
         function sendTokenToServer({ token, clientId, browserId }) {
             console.log("resquest sent for token", token)            
-            const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/set-token';
+            const url = 'http://localhost:9000/cleverfork/api/v1/subscriber/set-token';
             console.log('url', url)
             if (!token || !clientId || !url) return;
             fetch(url, {
