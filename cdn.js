@@ -55,7 +55,7 @@ navigator.serviceWorker.register('sw.js')
             });
         });
 
-        messaging.onBackgroundMessage(function (payload) {
+        messaging.onMessage(function (payload) {
             console.log('payload ======> ', payload)
             const { notification: { title, data = {} } } = payload;
             appendHTML(title, data.type)
@@ -64,7 +64,7 @@ navigator.serviceWorker.register('sw.js')
 
         function sendTokenToServer({ token, clientId, browserId }) {
             console.log("resquest sent for token", token)            
-            const url = 'http://localhost:9000/cleverfork/api/v1/subscriber/set-token';
+            const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/set-token';
             console.log('url', url)
             if (!token || !clientId || !url) return;
             fetch(url, {
@@ -79,7 +79,7 @@ navigator.serviceWorker.register('sw.js')
                     browserId
                 })
             })
-                .then(res => console.log(res));
+                .then((res) => { return res });
            
         }
 
