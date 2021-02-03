@@ -55,7 +55,7 @@ navigator.serviceWorker.register('sw.js')
             });
         });
 
-        messaging.onMessage(function (payload) {
+        messaging.onBackgroundMessage(function (payload) {
             console.log('payload ======> ', payload)
             const { notification: { title, data = {} } } = payload;
             appendHTML(title, data.type)
