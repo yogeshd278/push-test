@@ -55,6 +55,7 @@ navigator.serviceWorker.register('sw.js')
         });
 
         function onMessage() {
+          console.log('message')
            messaging.onMessage(function (payload) {
             console.log('payload ======> ', payload)
             const { notification: { title, data = {} } } = payload;
@@ -78,7 +79,7 @@ navigator.serviceWorker.register('sw.js')
                     browserId
                 })
             })
-            .then((res) => { onMessage(); return res });
+            .then((res) => { onMessage(); console.log(res); return res });
         }
 
         function appendHTML(text, type = 'a') {
