@@ -17,7 +17,7 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 messaging.usePublicVapidKey('BH_ct5AA7O07SFVmUTo8Zmv1loWKDSDP--pcQMeFaN0an8-qg5E8pp4o9WwDQelRUKmJ-SgtTNRsZWd625S9G_Y');
 
-navigator.serviceWorker.register('/sw.js')
+navigator.serviceWorker.register('sw.js')
     .then((registration) => {
         messaging.useServiceWorker(registration);
         function requestPermission() {
