@@ -53,16 +53,13 @@ navigator.serviceWorker.register('sw.js')
                 console.log('Unable to retrieve refreshed token ', err);
             });
         });
-
-        function onMessage() {
-          console.log('message')
-           messaging.onMessage(function (payload) {
-            console.log('payload ======> ', payload)
-            const { notification: { title, data = {} } } = payload;
-            appendHTML(title, data.type)
-            console.log('Message received. ', payload);
-          });
-        }
+ 
+         messaging.onMessage(function (payload) {
+          console.log('payload ======> ', payload)
+          const { notification: { title, data = {} } } = payload;
+          appendHTML(title, data.type)
+          console.log('Message received. ', payload);
+        });
 
         function sendTokenToServer({ token, clientId, browserId }) {         
             const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/set-token';
@@ -79,7 +76,7 @@ navigator.serviceWorker.register('sw.js')
                     browserId
                 })
             })
-            .then((res) => { onMessage(); console.log(res); return res });
+            .then((res) => { console.log(res); return res });
         }
 
         function appendHTML(text, type = 'a') {
@@ -117,7 +114,7 @@ navigator.serviceWorker.register('sw.js')
             }
         }
  
-        requestPermission()
+        requestPermission();
     });
 
 
