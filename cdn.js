@@ -63,7 +63,7 @@ navigator.serviceWorker.register('sw.js')
         });
 
         function sendTokenToServer({ token, clientId, browserId }) {         
-            const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/set-token';
+            const url = 'http://localhost:9000/cleverfork/api/v1/subscriber/set-token';
             if (!token || !clientId || !url) return;
             fetch(url, {
                 headers: {
