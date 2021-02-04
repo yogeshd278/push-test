@@ -59,7 +59,7 @@ messaging.setBackgroundMessageHandler(function (payload) {
        event.notification.close();
     });
 
-    return self.registration.showNotification(notificationTitle,
-        notificationOptions);
+    //return self.registration.showNotification(notificationTitle,
+    //    notificationOptions);
 });
 // [END background_handler]
