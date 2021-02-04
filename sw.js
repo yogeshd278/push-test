@@ -28,15 +28,32 @@ messaging.setBackgroundMessageHandler(function (payload) {
     self.addEventListener('notificationclick', function(event) {
        if (event.action === 'like') {
            // Like button was clicked
-
+            const url = 'http://localhost:9000/cleverfork/api/v1/user/countrieslist';
+            if (!url) return;
+            fetch(url, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: 'GET'
+            })
+            .then(res => console.log(res));
+           
            const photoId = event.notification.data.Id;
-           like(photoId);
+           //like(photoId);
        }
        else if (event.action === 'unsubscribe') {
            // Unsubscribe button was clicked
-
+           const url = 'http://localhost:9000/cleverfork/api/v1/user/countrieslist';
+            if (!url) return;
+            fetch(url, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: 'GET'
+            })
+            .then(res => console.log(res));
            const notificationType = event.notification.data.notificationType;
-           unsubscribe(notificationType);
+           //unsubscribe(notificationType);
        }
 
        event.notification.close();
