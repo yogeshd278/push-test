@@ -24,6 +24,14 @@ messaging.setBackgroundMessageHandler(function (payload) {
         icon: '/firebase-logo.png'
     };
     
+    self.addEventListener('notificationclick', event => {
+        event.notification.close()
+
+        event.waitUntil(
+            self.clients.openWindow('https://artofmyself.com')
+        )
+    })
+    
     // Add an event listener to handle notification clicks
     self.addEventListener('notificationclick', function(event) {
        if (event.action === 'like') {
