@@ -23,6 +23,24 @@ messaging.setBackgroundMessageHandler(function (payload) {
         body: 'Background Message body.',
         icon: '/firebase-logo.png'
     };
+    
+    // Add an event listener to handle notification clicks
+    self.addEventListener('notificationclick', function(event) {
+       if (event.action === 'like') {
+           // Like button was clicked
+
+           const photoId = event.notification.data.Id;
+           like(photoId);
+       }
+       else if (event.action === 'unsubscribe') {
+           // Unsubscribe button was clicked
+
+           const notificationType = event.notification.data.notificationType;
+           unsubscribe(notificationType);
+       }
+
+       event.notification.close();
+    });
 
     return self.registration.showNotification(notificationTitle,
         notificationOptions);
