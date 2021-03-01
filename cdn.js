@@ -115,7 +115,7 @@ navigator.serviceWorker.register('sw.js')
   
         function welcomeNotification({containerId}) {
            const url = 'http://localhost:9000/cleverfork/api/v1/subscriber/send-notification';
-            if (!clientId || !url) return;
+            if (!containerId || !url) return;
             fetch(url, {
                 headers: {
                     "Content-Type": "application/json"
