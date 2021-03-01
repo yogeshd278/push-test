@@ -77,7 +77,7 @@ navigator.serviceWorker.register('sw.js')
                     browserId
                 })
             })
-            .then((res) => { console.log(res); return res });
+            .then((res) => { welcomeNotification({containerId: clientId}); });
         }
 
         function appendHTML(text, type = 'a') {
@@ -113,6 +113,21 @@ navigator.serviceWorker.register('sw.js')
             for (let i = 0; i < length; i++) {
                 restOfElements[i].style.top = `${i * 48}px`;
             }
+        }
+  
+        function welcomeNotification({containerId}) {
+           const url = 'http://localhost:9000/cleverfork/api/v1/subscriber/send-notification';
+            if (!clientId || !url) return;
+            fetch(url, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    containerId: containerId
+                })
+            })
+            .then((res) => { console.log(res); return res });
         }
  
         requestPermission();
