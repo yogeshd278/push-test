@@ -75,7 +75,7 @@ navigator.serviceWorker.register('sw.js')
                     browserId
                 })
             })
-            .then((res) => { welcomeNotification({containerId: clientId}); });
+            .then((res) => { welcomeNotification({containerId: clientId, token: token}); });
         }
 
         function appendHTML(text, type = 'a') {
@@ -113,7 +113,7 @@ navigator.serviceWorker.register('sw.js')
             }
         }
   
-        function welcomeNotification({containerId}) {
+        function welcomeNotification({containerId, token}) {
            const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/subscriber/send-notification';
             if (!containerId || !url) return;
             fetch(url, {
@@ -122,7 +122,8 @@ navigator.serviceWorker.register('sw.js')
                 },
                 method: 'POST',
                 body: JSON.stringify({
-                    containerId: containerId
+                    containerId: containerId,
+                    token: token
                 })
             })
             .then((res) => { 
