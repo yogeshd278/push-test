@@ -1,5 +1,5 @@
 //importScripts('https://cdn.jsdelivr.net/gh/utkarshv/push_test/firebase-messaging-sw.js');
-
+console.log('Hello World')
 importScripts('https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/6.1.1/firebase-messaging.js');
 var firebaseConfig = {
