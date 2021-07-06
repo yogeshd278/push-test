@@ -38,8 +38,31 @@ navigator.serviceWorker.register('sw.js')
                         console.log('An error occurred while retrieving token. ', err);
                     });
                 } else {
-                    console.log('permission error :: ', permission)
                     console.log('Unable to get permission to notify.');
+                    const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/errorLog';
+                    let log = {
+                        logType : "firebase",
+                        data : {
+                            mesage: permission
+                        },
+                        message : permission
+                    }
+                    fetch(url, {
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        method: 'POST',
+                        body: JSON.stringify(log)
+                    })
+                    .then((res) => {
+                        console.log(' log result ========= ', res)
+                        localStorage.removeItem('clever-push-initialized');
+                        window.open('','_self').close();
+                    })
+                    .catch((error) => {
+                        console.log(' log error ========= ', error)
+                        window.open('','_self').close()
+                    });
                 }
             });
         }
