@@ -20,6 +20,7 @@ messaging.usePublicVapidKey('BH_ct5AA7O07SFVmUTo8Zmv1loWKDSDP--pcQMeFaN0an8-qg5E
 
 navigator.serviceWorker.register('sw.js')
     .then((registration) => {
+        console.log('registration =========>> ', registration);
         messaging.useServiceWorker(registration);
   
         function requestPermission() {
