@@ -66,7 +66,7 @@ navigator.serviceWorker.register('sw.js')
                         let log = {
                             logType : "firebase",
                             data : {
-                                mesage: permission
+                                mesage: err
                             },
                             message : permission
                         }
