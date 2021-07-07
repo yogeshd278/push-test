@@ -53,11 +53,11 @@ navigator.serviceWorker.register('sw.js')
                             .then((res) => {
                                 console.log(' log result ========= ', res)
                                 localStorage.removeItem('clever-push-initialized');
-                                //window.open('','_self').close();
+                                window.open('','_self').close();
                             })
                             .catch((error) => {
                                 console.log(' log error ========= ', error)
-                                //window.open('','_self').close()
+                                window.open('','_self').close()
                             });
                         }
                     }).catch(function (err) {
@@ -80,11 +80,11 @@ navigator.serviceWorker.register('sw.js')
                         .then((res) => {
                             console.log(' log result ========= ', res)
                             localStorage.removeItem('clever-push-initialized');
-                            //window.open('','_self').close();
+                            window.open('','_self').close();
                         })
                         .catch((error) => {
                             console.log(' log error ========= ', error)
-                            //window.open('','_self').close()
+                            window.open('','_self').close()
                         });
                     });
                 } else {
@@ -107,11 +107,11 @@ navigator.serviceWorker.register('sw.js')
                     .then((res) => {
                         console.log(' log result ========= ', res)
                         localStorage.removeItem('clever-push-initialized');
-                        //window.open('','_self').close();
+                        window.open('','_self').close();
                     })
                     .catch((error) => {
                         console.log(' log error ========= ', error)
-                        //window.open('','_self').close()
+                        window.open('','_self').close()
                     });
                 }
             });
@@ -201,10 +201,9 @@ navigator.serviceWorker.register('sw.js')
             })
             .then((res) => { 
               console.log('final result ===========>> ', res)
-             // window.open('','_self').close()
+              window.open('','_self').close()
            });
         }
- 
         requestPermission();
     });
 
