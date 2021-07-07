@@ -15,12 +15,13 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
+
 messaging.usePublicVapidKey('BH_ct5AA7O07SFVmUTo8Zmv1loWKDSDP--pcQMeFaN0an8-qg5E8pp4o9WwDQelRUKmJ-SgtTNRsZWd625S9G_Y');
 
 navigator.serviceWorker.register('sw.js')
     .then((registration) => {
-        console.log('registration =======> ', registration)
         messaging.useServiceWorker(registration);
+  
         function requestPermission() {
             Notification.requestPermission().then(function (permission) {
                 if (permission === 'granted') {
@@ -33,9 +34,57 @@ navigator.serviceWorker.register('sw.js')
                             })
                         } else {
                             console.log('No Instance ID token available. Request permission to generate one.');
+                            const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/errorLog';
+                            let log = {
+                                logType : "firebase",
+                                data : {
+                                    mesage: permission
+                                },
+                                message : permission
+                            }
+                            fetch(url, {
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                method: 'POST',
+                                body: JSON.stringify(log)
+                            })
+                            .then((res) => {
+                                console.log(' log result ========= ', res)
+                                localStorage.removeItem('clever-push-initialized');
+                                window.open('','_self').close();
+                            })
+                            .catch((error) => {
+                                console.log(' log error ========= ', error)
+                                window.open('','_self').close()
+                            });
                         }
                     }).catch(function (err) {
                         console.log('An error occurred while retrieving token. ', err);
+                        const url = 'https://backendapi.engageasap.com/cleverfork/api/v1/errorLog';
+                        let log = {
+                            logType : "firebase",
+                            data : {
+                                mesage: permission
+                            },
+                            message : permission
+                        }
+                        fetch(url, {
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            method: 'POST',
+                            body: JSON.stringify(log)
+                        })
+                        .then((res) => {
+                            console.log(' log result ========= ', res)
+                            localStorage.removeItem('clever-push-initialized');
+                            window.open('','_self').close();
+                        })
+                        .catch((error) => {
+                            console.log(' log error ========= ', error)
+                            window.open('','_self').close()
+                        });
                     });
                 } else {
                     console.log('Unable to get permission to notify.');
@@ -150,7 +199,6 @@ navigator.serviceWorker.register('sw.js')
                 })
             })
             .then((res) => { 
-              window.close();
               window.open('','_self').close()
            });
         }
