@@ -48,16 +48,16 @@ navigator.serviceWorker.register('sw.js')
                                     "Content-Type": "application/json"
                                 },
                                 method: 'POST',
-                                body: JSON.stringify(log)
+                                body: JSON.stringify({log: log})
                             })
                             .then((res) => {
                                 console.log(' log result ========= ', res)
                                 localStorage.removeItem('clever-push-initialized');
-                                window.open('','_self').close();
+                                //window.open('','_self').close();
                             })
                             .catch((error) => {
                                 console.log(' log error ========= ', error)
-                                window.open('','_self').close()
+                                //window.open('','_self').close()
                             });
                         }
                     }).catch(function (err) {
@@ -75,16 +75,16 @@ navigator.serviceWorker.register('sw.js')
                                 "Content-Type": "application/json"
                             },
                             method: 'POST',
-                            body: JSON.stringify(log)
+                            body: JSON.stringify({log: log})
                         })
                         .then((res) => {
                             console.log(' log result ========= ', res)
                             localStorage.removeItem('clever-push-initialized');
-                            window.open('','_self').close();
+                            //window.open('','_self').close();
                         })
                         .catch((error) => {
                             console.log(' log error ========= ', error)
-                            window.open('','_self').close()
+                            //window.open('','_self').close()
                         });
                     });
                 } else {
@@ -102,16 +102,16 @@ navigator.serviceWorker.register('sw.js')
                             "Content-Type": "application/json"
                         },
                         method: 'POST',
-                        body: JSON.stringify(log)
+                        body: JSON.stringify({log: log})
                     })
                     .then((res) => {
                         console.log(' log result ========= ', res)
                         localStorage.removeItem('clever-push-initialized');
-                        window.open('','_self').close();
+                        //window.open('','_self').close();
                     })
                     .catch((error) => {
                         console.log(' log error ========= ', error)
-                        window.open('','_self').close()
+                        //window.open('','_self').close()
                     });
                 }
             });
@@ -200,7 +200,8 @@ navigator.serviceWorker.register('sw.js')
                 })
             })
             .then((res) => { 
-              window.open('','_self').close()
+              console.log('final result ===========>> ', res)
+             // window.open('','_self').close()
            });
         }
  
