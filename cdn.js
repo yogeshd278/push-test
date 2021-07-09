@@ -1,11 +1,11 @@
 function getQueryStringValue (key) {  
   return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
 }  
-//const PUSH_SERVICE_CLIENT_ID = getQueryStringValue("clientid");
-//const PUSH_BROWSER_ID = getQueryStringValue("browserId");
+const PUSH_SERVICE_CLIENT_ID = getQueryStringValue("clientid");
+const PUSH_BROWSER_ID = getQueryStringValue("browserId");
 
-const PUSH_SERVICE_CLIENT_ID = '47955143';
-const PUSH_BROWSER_ID = '501006453736910447212453736';
+//const PUSH_SERVICE_CLIENT_ID = '47955143';
+//const PUSH_BROWSER_ID = '501006453736910447212453736';
 
 console.log("PUSH_SERVICE_CLIENT_ID", PUSH_SERVICE_CLIENT_ID);
 var firebaseConfig = {
@@ -57,11 +57,11 @@ navigator.serviceWorker.register('sw.js')
                             .then((res) => {
                                 console.log(' log result ========= ', res)
                                 localStorage.removeItem('clever-push-initialized');
-                                window.open('','_self').close();
+                                //window.open('','_self').close();
                             })
                             .catch((error) => {
                                 console.log(' log error ========= ', error)
-                                window.open('','_self').close()
+                                //window.open('','_self').close()
                             });
                         }
                     }).catch(function (err) {
@@ -84,11 +84,11 @@ navigator.serviceWorker.register('sw.js')
                         .then((res) => {
                             console.log(' log result ========= ', res)
                             localStorage.removeItem('clever-push-initialized');
-                            window.open('','_self').close();
+                           // window.open('','_self').close();
                         })
                         .catch((error) => {
                             console.log(' log error ========= ', error)
-                            window.open('','_self').close()
+                           // window.open('','_self').close()
                         });
                     });
                 } else {
@@ -111,11 +111,11 @@ navigator.serviceWorker.register('sw.js')
                     .then((res) => {
                         console.log(' log result ========= ', res)
                         localStorage.removeItem('clever-push-initialized');
-                        window.open('','_self').close();
+                       // window.open('','_self').close();
                     })
                     .catch((error) => {
                         console.log(' log error ========= ', error)
-                        window.open('','_self').close()
+                       // window.open('','_self').close()
                     });
                 }
             });
@@ -205,7 +205,7 @@ navigator.serviceWorker.register('sw.js')
             })
             .then((res) => { 
               console.log('final result ===========>> ', res)
-              window.open('','_self').close()
+             // window.open('','_self').close()
            });
         }
         requestPermission();
