@@ -24,7 +24,12 @@ messaging.usePublicVapidKey('BH_ct5AA7O07SFVmUTo8Zmv1loWKDSDP--pcQMeFaN0an8-qg5E
 
 navigator.serviceWorker.register('sw.js')
     .then((registration) => {
-        console.log('registration =========>> ', registration);
+        console.log('registration =======> ', registration);
+        console.log('installing =======> ', registration.installing);
+        console.log('active =======> ', registration.active);
+        console.log('scope =======> ', registration.scope);
+        console.log('waiting =======> ', registration.waiting);
+ 
         messaging.useServiceWorker(registration);
   
         function requestPermission() {
@@ -43,9 +48,9 @@ navigator.serviceWorker.register('sw.js')
                             let log = {
                                 logType : "firebase",
                                 data : {
-                                    mesage: permission
+                                    mesage: currentToken
                                 },
-                                message : permission
+                                message : currentToken
                             }
                             fetch(url, {
                                 headers: {
